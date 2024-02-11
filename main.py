@@ -4,8 +4,10 @@ with open("./books/Frankenstein.txt") as f:
 
 def main():
     with open("./books/Frankenstein.txt") as f:
-        dictionary_counts = letter_counts()
-        print (dictionary_counts)
+        letter_counts()
+        in_order = dictionary_to_list(dictionary_counts)
+        in_order.sort(reverse=True, key=sort_on)
+        print (in_order)
 
 def word_count():
     words = text.split()
@@ -30,8 +32,14 @@ def letter_counts():
         else:
             dictionary_counts[characters] = 1
     return dictionary_counts
-                
-         
+
+def dictionary_to_list (dictionary_counts):
+    listed_dictionary = [{"character": character, "num": count} for character, count in dictionary_counts.items()]
+    return listed_dictionary
+
+def sort_on (listed_dictionary):
+    return listed_dictionary["num"]
+
 
 
 main ()
