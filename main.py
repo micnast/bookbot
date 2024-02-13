@@ -1,13 +1,18 @@
-with open("./books/Frankenstein.txt") as f:
-    text = f.read()
-    
-
+file_to_open = "./books/Frankenstein.txt"
+with open(file_to_open) as f:
+    text = f.read()   
+alphabet = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm']
 def main():
-    with open("./books/Frankenstein.txt") as f:
-        letter_counts()
+    with open(file_to_open) as f:
+        print (f"--- Begin report of books {file_to_open} ---")  
+        print (f"{word_count()} words found in the document.")
+        dictionary_counts = letter_counts()
         in_order = dictionary_to_list(dictionary_counts)
         in_order.sort(reverse=True, key=sort_on)
-        print (in_order)
+        for listed in in_order:
+            if listed['character'] in alphabet:
+                print (f"The '{listed['character']}' was found {listed['num']} times.")
+        print ("--- End report ---")
 
 def word_count():
     words = text.split()
